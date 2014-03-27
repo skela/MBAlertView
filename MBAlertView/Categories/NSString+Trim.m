@@ -11,7 +11,7 @@
 @implementation NSString (Trim)
 
 - (NSString*)stringByTruncatingToSize:(CGSize)size withFont:(UIFont*)font addQuotes:(BOOL)addQuotes {
-    int min = 0, max = self.length, mid;
+    NSInteger min = 0, max = self.length, mid;
     while (min < max) {
         mid = (min+max)/2;
         
