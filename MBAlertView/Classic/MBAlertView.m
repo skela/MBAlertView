@@ -197,7 +197,7 @@ CGFloat MBAlertViewDefaultHUDHideDelay = 0.65;
     
     CGRect content = self.contentView.bounds;
     
-    CGSize size = [_bodyText sizeWithFont:self.bodyFont constrainedToSize:[self labelConstraint]];
+    CGSize size = [_bodyText sizeForFont:self.bodyFont constrainedToSize:[self labelConstraint]];
     
     NSString *txt = [_bodyText stringByTruncatingToSize:size withFont:self.bodyFont addQuotes:NO];
     _bodyLabelButton = [[UIButton alloc] initWithFrame:CGRectMake(content.origin.x + content.size.width/2.0 - size.width/2.0, content.origin.y + content.size.height/2.0 - size.height/2.0 - 8, size.width, size.height)];

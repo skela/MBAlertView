@@ -7,13 +7,14 @@
 //
 
 #import "UIFont+Alert.h"
+#import "NSString+Trim.h"
 
 @implementation UIFont (Alert)
 
 +(UIFont*)boldSystemFontThatFitsSize:(CGSize)size maxFontSize:(int)max minSize:(int)min text:(NSString*)text {
     for(int i = max; i > min; i--) {
         UIFont *font = [UIFont boldSystemFontOfSize:i];
-        CGSize _size = [text sizeWithFont:font constrainedToSize:CGSizeMake(size.width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize _size = [text sizeForFont:font constrainedToSize:CGSizeMake(size.width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
         if(_size.height <= size.height)
             return font;
     }

@@ -8,6 +8,7 @@
 
 #import "MBAlertViewButton.h"
 #import <QuartzCore/QuartzCore.h>
+#import "NSString+Trim.h"
 
 @implementation MBAlertViewButton
 
@@ -52,14 +53,14 @@
     [path fill];
     
     CGFloat actualSize = 0;
-    [_title sizeWithFont:kButtonFont minFontSize:8 actualFontSize:&actualSize forWidth:self.bounds.size.width - 20 lineBreakMode:NSLineBreakByClipping];
-    CGSize otherSize = [_title sizeWithFont:[UIFont boldSystemFontOfSize:actualSize]];
+    [_title sizeForFont:kButtonFont minFontSize:8 actualFontSize:&actualSize forWidth:self.bounds.size.width - 20 lineBreakMode:NSLineBreakByClipping];
+    CGSize otherSize = [_title sizeForFont:[UIFont boldSystemFontOfSize:actualSize]];
     
     CGPoint origin = CGPointMake(self.bounds.size.width/2.0 - otherSize.width/2.0, self.bounds.size.height/2.0 - otherSize.height/2.0);
     CGRect frame = CGRectMake(origin.x, origin.y, otherSize.width, otherSize.height);
     
     [[self textColor] set];
-    [_title drawInRect:frame withFont:[UIFont boldSystemFontOfSize:actualSize] lineBreakMode:NSLineBreakByClipping];
+    [_title drawInRect:frame forFont:[UIFont boldSystemFontOfSize:actualSize] lineBreakMode:NSLineBreakByClipping];
 }
 
 @end

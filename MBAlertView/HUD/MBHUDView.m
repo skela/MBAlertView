@@ -12,6 +12,7 @@
 #import "MBCheckmarkView.h"
 #import "MBAlertViewSubclass.h"
 #import "UIView+Alert.h"
+#import "NSString+Trim.h"
 
 @interface MBHUDView () {
     UIButton *_backgroundButton;
@@ -83,7 +84,7 @@
     if(_bodyFont)
         return _bodyFont;
     CGFloat size = 0;
-    [self.bodyText sizeWithFont:[UIFont boldSystemFontOfSize:26] minFontSize:6 actualFontSize:&size forWidth:self.contentView.bounds.size.width / 1.3 lineBreakMode:NSLineBreakByTruncatingTail];
+    [self.bodyText sizeForFont:[UIFont boldSystemFontOfSize:26] minFontSize:6 actualFontSize:&size forWidth:self.contentView.bounds.size.width / 1.3 lineBreakMode:NSLineBreakByTruncatingTail];
     _bodyFont = [UIFont boldSystemFontOfSize:size];
     return _bodyFont;
 }
@@ -94,7 +95,7 @@
     
     UIFont *font = self.bodyFont;
     CGRect bounds = self.contentView.bounds;
-    CGSize size = [self.bodyText sizeWithFont:font];
+    CGSize size = [self.bodyText sizeForFont:font];
     _bodyLabelButton = [[UIButton alloc] initWithFrame:CGRectMake(bounds.origin.x + bounds.size.width/2.0 - size.width/2.0, bounds.size.height/2.0 - size.height/2.0 - 8, size.width, size.height)];
 
     [_bodyLabelButton setTitle:self.bodyText forState:UIControlStateNormal];
