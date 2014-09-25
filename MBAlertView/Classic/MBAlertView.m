@@ -282,26 +282,32 @@ float M_PI2 = M_PI/2.0f;
 - (void)rotateViews
 {
     float angle = 0.0f;
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    switch (orientation)
+    
+    CGFloat systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (systemVersion<8)
     {
-        case UIInterfaceOrientationPortraitUpsideDown:
-            angle = M_PI;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            angle = - M_PI2;
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            angle = M_PI2;
-            break;
-        default:
-            angle = 0.0f;
-            break;
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        switch (orientation)
+        {
+            case UIInterfaceOrientationPortraitUpsideDown:
+                angle = M_PI;
+                break;
+            case UIInterfaceOrientationLandscapeLeft:
+                angle = - M_PI2;
+                break;
+            case UIInterfaceOrientationLandscapeRight:
+                angle = M_PI2;
+                break;
+            default:
+                angle = 0.0f;
+                break;
+        }
     }
     self.contentView.transform = CGAffineTransformMakeRotation(angle);
 }
 
-- (void)layoutButtonCollecitonView {
+- (void)layoutButtonCollecitonView
+{
     CGSize contentSize = self.contentView.bounds.size;
     CGFloat contentHeight = contentSize.height;
     CGFloat butttonCollectionHeight = contentHeight;
@@ -312,7 +318,8 @@ float M_PI2 = M_PI/2.0f;
     self.buttonCollectionView.frame = CGRectMake(0, 0, contentSize.width, butttonCollectionHeight-20);
 }
 
-- (void)performLayoutOfButtons {
+- (void)performLayoutOfButtons
+{
     if ([_buttons count] <= 0) return;
     
     [self layoutButtonCollecitonView];
